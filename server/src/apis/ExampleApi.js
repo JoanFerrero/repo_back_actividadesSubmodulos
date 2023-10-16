@@ -16,6 +16,19 @@ const registerApis = app => {
       res.send({ examples: result });
     });
   });
+  
+  app.get(apiEndpoints.examples.getAll, (req, res) => {
+    ExampleModel.find((err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(HttpStatus.INTERNAL_SERVER_ERROR).send();
+        return;
+      }
+      
+      res.send({ examples: result });
+    });
+  });
+
   app.get(apiEndpoints.examples.getAll, (req, res) => {
     ExampleModel.find((err, result) => {
       if (err) {
